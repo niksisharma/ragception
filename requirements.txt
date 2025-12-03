@@ -1,0 +1,32 @@
+# RAG Research Bot - Requirements File
+# Python 3.8+ required
+
+# Core dependencies
+arxiv==2.1.0              # For fetching papers from arXiv
+PyPDF2==3.0.1             # For parsing PDF documents
+numpy==1.24.3             # For vector operations and similarity calculations
+
+# OpenAI API for embeddings
+openai==1.12.0            # OpenAI API client for embeddings
+
+# Database and storage
+# sqlite3 is included in Python standard library
+
+# Configuration and secrets
+toml==0.10.2              # For reading secrets.toml configuration
+
+# Scheduling and automation
+schedule==1.2.0           # For scheduling periodic pipeline runs
+
+# Web UI framework
+streamlit==1.31.0         # For building the web interface
+
+# Optional but recommended
+python-dotenv==1.0.1      # For loading environment variables from .env file
+pandas==2.0.3             # Useful for data manipulation in Streamlit UI
+plotly==5.18.0            # For creating interactive visualizations in UI
+
+# Development tools (optional)
+ipython==8.12.3           # Enhanced Python shell for debugging
+black==23.12.1            # Code formatter
+pylint==3.0.3             # Code linter

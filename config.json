@@ -1,0 +1,24 @@
+{
+  "arxiv_categories": [
+    "cs.CL",
+    "cs.LG", 
+    "cs.AI"
+  ],
+  
+  "keywords": [
+    "retrieval augmented generation",
+    "RAG"
+  ],
+  
+  "pdf_directory": "./data/pdfs",
+  "database_path": "./data/ragbot.db",
+  
+  "days_back": 30,
+  "max_papers_per_run": 100,
+  
+  "team_exchange_directory": "./data/team_exchange",
+  
+  "embedding_model": "text-embedding-3-small",
+  "chunk_size": 1000,
+  "chunk_overlap": 200
+}

@@ -1,0 +1,36 @@
+# check_rag_papers.py
+import arxiv
+from datetime import datetime, timedelta
+
+# Search for papers in last 30 days
+categories = "cat:cs.CL OR cat:cs.LG OR cat:cs.AI"
+search = arxiv.Search(
+    query=categories,
+    max_results=500,
+    sort_by=arxiv.SortCriterion.SubmittedDate,
+    sort_order=arxiv.SortOrder.Descending
+)
+
+cutoff_date = datetime.now() - timedelta(days=30)
+total = 0
+with_rag = 0
+with_retrieval = 0
+
+print("Analyzing papers from last 30 days...")
+for paper in search.results():
+    if paper.published.replace(tzinfo=None) < cutoff_date:
+        break
+    
+    total += 1
+    text = (paper.title + " " + paper.summary).lower()
+    
+    if "rag" in text or "retrieval augmented generation" in text:
+        with_rag += 1
+    if "retrieval" in text:  # broader term
+        with_retrieval += 1
+
+print(f"\n📊 Results for last 30 days:")
+print(f"Total AI papers: {total}")
+print(f"Papers mentioning 'RAG' or 'Retrieval Augmented Generation': {with_rag}")
+print(f"Papers mentioning 'retrieval' (broader): {with_retrieval}")
+print(f"Percentage with RAG: {(with_rag/total*100):.1f}%")

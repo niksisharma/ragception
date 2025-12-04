@@ -931,10 +931,4 @@ elif page == "📚 My Papers":
                     st.markdown(f"- {topic}")
 
 
-# Footer
-st.markdown("<br><br>", unsafe_allow_html=True)
-st.markdown("""
-    <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
-        <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
-    </div>
-""", unsafe_allow_html=True)
+

@@ -58,10 +58,10 @@ st.markdown("""
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 4rem 2rem;
+        padding: 4rem 2rem 2rem 2rem;
         background: #ffffff;
         border-radius: 0;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
     .hero-title {
         font-size: 3rem;
@@ -76,6 +76,7 @@ st.markdown("""
         max-width: 800px;
         line-height: 1.8;
         font-weight: 400;
+        margin-bottom: 2rem;
     }
 
     /* Chat messages */
@@ -123,24 +124,26 @@ st.markdown("""
         color: #94a3b8 !important;
     }
 
-    /* Chat input */
+    /* Chat input - remove fixed positioning */
+    .stChatInput {
+        position: relative !important;
+        bottom: auto !important;
+    }
+    .stChatFloatingInputContainer {
+        position: relative !important;
+        bottom: auto !important;
+    }
     .stChatInput>div>div>input {
         background-color: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
         color: #2d3748 !important;
         font-size: 15px !important;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 8px !important;
+        padding: 0.875rem 1rem !important;
     }
-    /* Make chat input scroll with page instead of fixed */
-    .stChatInput {
-        position: relative !important;
-        bottom: auto !important;
-    }
-    
-    /* Remove fixed positioning from chat input container */
-    .stChatFloatingInputContainer {
-        position: relative !important;
-        bottom: auto !important;
+    .stChatInput>div>div>input::placeholder {
+        color: #94a3b8 !important;
     }
 
     /* Select boxes */
@@ -298,14 +301,14 @@ st.markdown("""
         border-top-color: #3b82f6 !important;
     }
 
-    /* Footer positioning fix */
-    .block-container {
-        padding-bottom: 5rem !important;
-    }
-
     /* Horizontal rule */
     hr {
         border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /* Footer positioning */
+    .block-container {
+        padding-bottom: 3rem !important;
     }
 
     #MainMenu {visibility: hidden;}
@@ -406,6 +409,15 @@ if page == "💬 Chat":
         </div>
     """, unsafe_allow_html=True)
 
+    user_input = st.chat_input("Ask about papers... (e.g., 'Find papers on hallucination in LLMs')")
+
+    if user_input:
+        st.session_state.conv_memory.add_message("user", user_input)
+        with st.spinner("Thinking..."):
+            response = st.session_state.agent.chat(user_input)
+            st.session_state.conv_memory.add_message("assistant", response)
+        st.rerun()
+
     st.markdown("### 💬 Conversation")
 
     for msg in st.session_state.conv_memory.messages:
@@ -415,19 +427,6 @@ if page == "💬 Chat":
         else:
             st.markdown(f"<div class='chat-message bot-message'><b>Assistant:</b> {msg['content']}</div>",
                        unsafe_allow_html=True)
-
-    user_input = st.chat_input("Ask about papers... (e.g., 'Find papers on hallucination in LLMs')")
-
-    if user_input:
-        st.markdown(f"<div class='chat-message user-message'><b>You:</b> {user_input}</div>",
-                   unsafe_allow_html=True)
-
-        with st.spinner("Thinking..."):
-            response = st.session_state.agent.chat(user_input)
-
-        st.markdown(f"<div class='chat-message bot-message'><b>Assistant:</b> {response}</div>",
-                   unsafe_allow_html=True)
-        st.rerun()
 
     if st.session_state.conv_memory.current_search_results:
         st.markdown("---")
@@ -1026,8 +1025,9 @@ elif page == "📚 My Papers":
                 for topic in frequent:
                     st.markdown(f"- {topic}")
 
+
 # Footer
-st.markdown("<br><br><br>", unsafe_allow_html=True)
+st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
     <div style='text-align: center; padding: 2rem 1rem; margin-top: 4rem; border-top: 1px solid #e2e8f0;'>
         <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>

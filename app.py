@@ -22,6 +22,8 @@ from agent import ResearchAgent
 from email_utils import send_papers_email
 from graph_module import create_graph_for_streamlit, get_graph_stats
 
+
+
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -31,27 +33,139 @@ st.markdown("""
         font-size: 15px;
     }
 
-    .main {
-        padding: 2rem;
-        background-color: #0f1729;
-        color: #e2e8f0;
+    /* ========== DARK MODE (default) ========== */
+    @media (prefers-color-scheme: dark) {
+        .main {
+            padding: 2rem;
+            background-color: #0f1729;
+            color: #e2e8f0;
+        }
+        h1, h2, h3 { color: #f8fafc; font-weight: 700; }
+        p, div, span, label { color: #e2e8f0 !important; line-height: 1.6; }
+
+        .hero-container {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.5);
+        }
+        .hero-title { color: #ffffff; }
+        .hero-subtitle { color: #e0e7ff !important; }
+
+        .chat-message { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+        .user-message { background-color: #1e3a8a; color: #e0e7ff !important; border-left: 4px solid #3b82f6; }
+        .user-message b { color: #93c5fd !important; }
+        .bot-message { background-color: #1e293b; color: #e2e8f0 !important; border-left: 4px solid #64748b; }
+        .bot-message b { color: #cbd5e1 !important; }
+
+        .stTextInput>div>div>input,
+        .stTextArea>div>div>textarea,
+        .stSelectbox>div>div>select,
+        .stNumberInput>div>div>input {
+            background-color: #1e293b !important;
+            border: 2px solid #475569 !important;
+            color: #f8fafc !important;
+        }
+        .stTextInput>div>div>input:focus,
+        .stTextArea>div>div>textarea:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+
+        .result-card {
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        .result-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        [data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] p, [data-testid="stSidebar"] label,
+        [data-testid="stSidebar"] span, [data-testid="stSidebar"] div { color: #ffffff !important; }
+
+        .streamlit-expanderHeader { background-color: #1e293b !important; color: #f8fafc !important; border: 1px solid #334155 !important; }
+        [data-testid="stMetricValue"] { color: #f8fafc !important; }
+        [data-testid="stMetricLabel"] { color: #cbd5e1 !important; }
+        a { color: #60a5fa !important; }
+        a:hover { color: #93c5fd !important; }
+
+        .stTabs [data-baseweb="tab"] { background-color: #1e293b; color: #cbd5e1; }
+        .stTabs [aria-selected="true"] { background-color: #3b82f6 !important; color: #ffffff !important; }
     }
 
-    h1, h2, h3 {
-        color: #f8fafc;
-        font-weight: 700;
+    /* ========== LIGHT MODE ========== */
+    @media (prefers-color-scheme: light) {
+        .main {
+            padding: 2rem;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        h1, h2, h3 { color: #0f172a; font-weight: 700; }
+        p, div, span, label { color: #334155 !important; line-height: 1.6; }
+
+        .hero-container {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .hero-title { color: #ffffff; }
+        .hero-subtitle { color: #e0e7ff !important; }
+
+        .chat-message { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+        .user-message { background-color: #dbeafe; color: #1e3a8a !important; border-left: 4px solid #3b82f6; }
+        .user-message b { color: #1e40af !important; }
+        .bot-message { background-color: #f1f5f9; color: #334155 !important; border-left: 4px solid #94a3b8; }
+        .bot-message b { color: #475569 !important; }
+
+        .stTextInput>div>div>input,
+        .stTextArea>div>div>textarea,
+        .stSelectbox>div>div>select,
+        .stNumberInput>div>div>input {
+            background-color: #ffffff !important;
+            border: 2px solid #cbd5e1 !important;
+            color: #1e293b !important;
+        }
+        .stTextInput>div>div>input:focus,
+        .stTextArea>div>div>textarea:focus {
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .result-card {
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .result-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15);
+        }
+
+        [data-testid="stSidebar"] {
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+        }
+        [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3,
+        [data-testid="stSidebar"] p, [data-testid="stSidebar"] label,
+        [data-testid="stSidebar"] span, [data-testid="stSidebar"] div { color: #ffffff !important; }
+
+        .streamlit-expanderHeader { background-color: #f1f5f9 !important; color: #1e293b !important; border: 1px solid #e2e8f0 !important; }
+        [data-testid="stMetricValue"] { color: #0f172a !important; }
+        [data-testid="stMetricLabel"] { color: #64748b !important; }
+        a { color: #2563eb !important; }
+        a:hover { color: #1d4ed8 !important; }
+
+        .stTabs [data-baseweb="tab"] { background-color: #f1f5f9; color: #64748b; }
+        .stTabs [aria-selected="true"] { background-color: #3b82f6 !important; color: #ffffff !important; }
     }
+
+    /* ========== SHARED STYLES (both modes) ========== */
     h1 { font-size: 2.2rem !important; }
     h2 { font-size: 1.75rem !important; }
     h3 { font-size: 1.4rem !important; }
 
-    /* Paragraphs and text */
-    p, div, span, label {
-        color: #e2e8f0 !important;
-        line-height: 1.6;
-    }
-
-    /* Hero section */
     .hero-container {
         display: flex;
         flex-direction: column;
@@ -59,119 +173,34 @@ st.markdown("""
         justify-content: center;
         text-align: center;
         padding: 3rem 1.5rem;
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(30, 58, 138, 0.5);
     }
     .hero-title {
         font-size: 2.75rem;
         font-weight: 700;
-        color: #ffffff;
         margin-bottom: 0.5rem;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .hero-subtitle {
         font-size: 1.15rem;
-        color: #e0e7ff !important;
         max-width: 700px;
         line-height: 1.7;
     }
 
-    /* Chat messages with better contrast */
     .chat-message {
         padding: 1.25rem;
         border-radius: 12px;
         margin-bottom: 0.75rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .user-message {
-        background-color: #1e3a8a;
-        color: #e0e7ff !important;
-        border-left: 4px solid #3b82f6;
-    }
-    .user-message b {
-        color: #93c5fd !important;
-    }
-    .bot-message {
-        background-color: #1e293b;
-        color: #e2e8f0 !important;
-        border-left: 4px solid #64748b;
-    }
-    .bot-message b {
-        color: #cbd5e1 !important;
     }
 
-    /* Text inputs with clear visibility */
-    .stTextInput>div>div>input,
-    .stTextArea>div>div>textarea,
-    .stSelectbox>div>div>select {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
-        border-radius: 8px;
-        padding: 0.875rem !important;
-        font-size: 15px !important;
-        color: #f8fafc !important;
-    }
-    .stTextInput>div>div>input:focus,
-    .stTextArea>div>div>textarea:focus {
-        border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-        outline: none;
-    }
-
-    /* Chat input */
-    .stChatInput>div>div>input {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
-        color: #f8fafc !important;
-        font-size: 15px !important;
-    }
-
-    /* Select boxes */
-    .stSelectbox>div>div>div {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-    }
-
-    /* Result cards */
     .result-card {
-        background-color: #1e293b;
-        border: 2px solid #334155;
         border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         transition: all 0.2s ease;
     }
-    .result-card:hover {
-        border-color: #3b82f6;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
-    }
+    .result-card:hover { transform: translateY(-2px); }
 
-    /* Sidebar with better contrast */
-    [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
-    }
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3,
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] label,
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] div {
-        color: #ffffff !important;
-    }
-
-    /* Sidebar inputs */
-    [data-testid="stSidebar"] .stTextInput>div>div>input,
-    [data-testid="stSidebar"] .stSelectbox>div>div>select {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-        border: 2px solid #475569 !important;
-    }
-
-    /* Buttons with clear contrast */
     .stButton>button {
         background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
         color: #ffffff !important;
@@ -189,77 +218,8 @@ st.markdown("""
         transform: translateY(-1px);
     }
 
-    /* Expander */
-    .streamlit-expanderHeader {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-        font-size: 15px !important;
-        font-weight: 500 !important;
-        border: 1px solid #334155 !important;
-        border-radius: 8px !important;
-    }
-
-    /* Metrics */
-    [data-testid="stMetricValue"] {
-        color: #f8fafc !important;
-        font-size: 1.5rem !important;
-        font-weight: 700 !important;
-    }
-    [data-testid="stMetricLabel"] {
-        color: #cbd5e1 !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
-    }
-
-    /* Success/Error/Info messages */
-    .stSuccess, .stError, .stWarning, .stInfo {
-        color: #f8fafc !important;
-        border-radius: 8px !important;
-    }
-
-    /* Links */
-    a {
-        color: #60a5fa !important;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    a:hover {
-        color: #93c5fd !important;
-        text-decoration: underline;
-    }
-
-    /* Tabs */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-    }
-    .stTabs [data-baseweb="tab"] {
-        background-color: #1e293b;
-        color: #cbd5e1;
-        border-radius: 8px 8px 0 0;
-        padding: 0.75rem 1.5rem;
-        font-weight: 500;
-    }
-    .stTabs [aria-selected="true"] {
-        background-color: #3b82f6 !important;
-        color: #ffffff !important;
-    }
-
-    /* Number input */
-    .stNumberInput>div>div>input {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-        border: 2px solid #475569 !important;
-    }
-
-    /* Checkbox */
-    .stCheckbox {
-        color: #e2e8f0 !important;
-    }
-
-    /* Spinner */
-    .stSpinner>div {
-        border-top-color: #3b82f6 !important;
-    }
+    .stTabs [data-baseweb="tab-list"] { gap: 8px; }
+    .stTabs [data-baseweb="tab"] { border-radius: 8px 8px 0 0; padding: 0.75rem 1.5rem; font-weight: 500; }
 
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}

@@ -33,12 +33,12 @@ st.markdown("""
 
     .main {
         padding: 2rem;
-        background-color: #ffffff;
-        color: #1e293b;
+        background-color: #f8fafc;
+        color: #0f172a;
     }
 
     h1, h2, h3 {
-        color: #1e293b;
+        color: #0f172a;
         font-weight: 700;
     }
     h1 { font-size: 2.2rem !important; }
@@ -59,18 +59,20 @@ st.markdown("""
         justify-content: center;
         text-align: center;
         padding: 3rem 1.5rem;
-        background-color: #ffffff;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
     .hero-title {
         font-size: 2.75rem;
         font-weight: 700;
-        color: #1e293b;
+        color: #ffffff;
         margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .hero-subtitle {
         font-size: 1.15rem;
-        color: #0891b2 !important;
+        color: #e0e7ff !important;
         max-width: 700px;
         line-height: 1.7;
     }
@@ -931,4 +933,10 @@ elif page == "📚 My Papers":
                     st.markdown(f"- {topic}")
 
 
-
+# Footer
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("""
+    <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
+        <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
+    </div>
+""", unsafe_allow_html=True)

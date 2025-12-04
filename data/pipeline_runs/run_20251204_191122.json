@@ -1,0 +1,34 @@
+{
+  "start_time": "2025-12-04T18:39:18.206829",
+  "steps": {
+    "fetch": {
+      "papers_found": 444,
+      "papers_stored": 444,
+      "pdfs_downloaded": 444,
+      "errors": []
+    },
+    "parse": {
+      "total": 444,
+      "success": 444,
+      "failed": []
+    },
+    "embeddings": {
+      "total": 438,
+      "success": 437,
+      "failed": [
+        "2512.03114v1"
+      ],
+      "total_api_calls": 2185,
+      "estimated_cost": 0.02185
+    },
+    "summaries": {
+      "total": 387,
+      "success": 387,
+      "failed": [],
+      "skipped": 0,
+      "estimated_cost": 4.644
+    }
+  },
+  "status": "SUCCESS",
+  "end_time": "2025-12-04T19:11:22.650831"
+}

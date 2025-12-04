@@ -33,12 +33,12 @@ st.markdown("""
 
     .main {
         padding: 2rem;
-        background-color: #f8fafc;
-        color: #0f172a;
+        background-color: #0f1729;
+        color: #e2e8f0;
     }
 
     h1, h2, h3 {
-        color: #0f172a;
+        color: #f8fafc;
         font-weight: 700;
     }
     h1 { font-size: 2.2rem !important; }
@@ -47,7 +47,7 @@ st.markdown("""
 
     /* Paragraphs and text */
     p, div, span, label {
-        color: #1e293b !important;
+        color: #e2e8f0 !important;
         line-height: 1.6;
     }
 
@@ -59,16 +59,16 @@ st.markdown("""
         justify-content: center;
         text-align: center;
         padding: 3rem 1.5rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 10px 25px rgba(30, 58, 138, 0.5);
     }
     .hero-title {
         font-size: 2.75rem;
         font-weight: 700;
         color: #ffffff;
         margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .hero-subtitle {
         font-size: 1.15rem;
@@ -82,71 +82,71 @@ st.markdown("""
         padding: 1.25rem;
         border-radius: 12px;
         margin-bottom: 0.75rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .user-message {
-        background-color: #eff6ff;
-        color: #1e3a8a !important;
+        background-color: #1e3a8a;
+        color: #e0e7ff !important;
         border-left: 4px solid #3b82f6;
     }
     .user-message b {
-        color: #1e40af !important;
+        color: #93c5fd !important;
     }
     .bot-message {
-        background-color: #f1f5f9;
-        color: #0f172a !important;
+        background-color: #1e293b;
+        color: #e2e8f0 !important;
         border-left: 4px solid #64748b;
     }
     .bot-message b {
-        color: #0f172a !important;
+        color: #cbd5e1 !important;
     }
 
     /* Text inputs with clear visibility */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea,
     .stSelectbox>div>div>select {
-        background-color: #ffffff !important;
-        border: 2px solid #cbd5e1 !important;
+        background-color: #1e293b !important;
+        border: 2px solid #475569 !important;
         border-radius: 8px;
         padding: 0.875rem !important;
         font-size: 15px !important;
-        color: #0f172a !important;
+        color: #f8fafc !important;
     }
     .stTextInput>div>div>input:focus,
     .stTextArea>div>div>textarea:focus {
         border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
         outline: none;
     }
 
     /* Chat input */
     .stChatInput>div>div>input {
-        background-color: #ffffff !important;
-        border: 2px solid #cbd5e1 !important;
-        color: #0f172a !important;
+        background-color: #1e293b !important;
+        border: 2px solid #475569 !important;
+        color: #f8fafc !important;
         font-size: 15px !important;
     }
 
     /* Select boxes */
     .stSelectbox>div>div>div {
-        background-color: #ffffff !important;
-        color: #0f172a !important;
+        background-color: #1e293b !important;
+        color: #f8fafc !important;
     }
 
     /* Result cards */
     .result-card {
-        background-color: #ffffff;
-        border: 2px solid #e2e8f0;
+        background-color: #1e293b;
+        border: 2px solid #334155;
         border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         transition: all 0.2s ease;
     }
     .result-card:hover {
         border-color: #3b82f6;
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15);
+        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
     }
 
     /* Sidebar with better contrast */
@@ -166,9 +166,9 @@ st.markdown("""
     /* Sidebar inputs */
     [data-testid="stSidebar"] .stTextInput>div>div>input,
     [data-testid="stSidebar"] .stSelectbox>div>div>select {
-        background-color: #ffffff !important;
-        color: #0f172a !important;
-        border: 2px solid #94a3b8 !important;
+        background-color: #1e293b !important;
+        color: #f8fafc !important;
+        border: 2px solid #475569 !important;
     }
 
     /* Buttons with clear contrast */
@@ -181,50 +181,50 @@ st.markdown("""
         font-weight: 600;
         font-size: 15px !important;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
     }
     .stButton>button:hover {
         background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
         transform: translateY(-1px);
     }
 
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: #f1f5f9 !important;
-        color: #0f172a !important;
+        background-color: #1e293b !important;
+        color: #f8fafc !important;
         font-size: 15px !important;
         font-weight: 500 !important;
-        border: 1px solid #e2e8f0 !important;
+        border: 1px solid #334155 !important;
         border-radius: 8px !important;
     }
 
     /* Metrics */
     [data-testid="stMetricValue"] {
-        color: #0f172a !important;
+        color: #f8fafc !important;
         font-size: 1.5rem !important;
         font-weight: 700 !important;
     }
     [data-testid="stMetricLabel"] {
-        color: #475569 !important;
+        color: #cbd5e1 !important;
         font-size: 14px !important;
         font-weight: 500 !important;
     }
 
     /* Success/Error/Info messages */
     .stSuccess, .stError, .stWarning, .stInfo {
-        color: #0f172a !important;
+        color: #f8fafc !important;
         border-radius: 8px !important;
     }
 
     /* Links */
     a {
-        color: #2563eb !important;
+        color: #60a5fa !important;
         text-decoration: none;
         font-weight: 500;
     }
     a:hover {
-        color: #1d4ed8 !important;
+        color: #93c5fd !important;
         text-decoration: underline;
     }
 
@@ -233,8 +233,8 @@ st.markdown("""
         gap: 8px;
     }
     .stTabs [data-baseweb="tab"] {
-        background-color: #f1f5f9;
-        color: #475569;
+        background-color: #1e293b;
+        color: #cbd5e1;
         border-radius: 8px 8px 0 0;
         padding: 0.75rem 1.5rem;
         font-weight: 500;
@@ -242,6 +242,23 @@ st.markdown("""
     .stTabs [aria-selected="true"] {
         background-color: #3b82f6 !important;
         color: #ffffff !important;
+    }
+
+    /* Number input */
+    .stNumberInput>div>div>input {
+        background-color: #1e293b !important;
+        color: #f8fafc !important;
+        border: 2px solid #475569 !important;
+    }
+
+    /* Checkbox */
+    .stCheckbox {
+        color: #e2e8f0 !important;
+    }
+
+    /* Spinner */
+    .stSpinner>div {
+        border-top-color: #3b82f6 !important;
     }
 
     #MainMenu {visibility: hidden;}
@@ -488,7 +505,7 @@ elif page == "🔍 Search":
 
 elif page == "🕸️ Knowledge Graph":
     st.markdown("<h1 style='text-align: center;'>🕸️ Knowledge Graph</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #64748b;'>Visualize relationships between papers and concepts</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #cbd5e1;'>Visualize relationships between papers and concepts</p>", unsafe_allow_html=True)
 
     if not st.session_state.conv_memory.current_search_results:
         st.info("👆 First, search for papers in the **Chat** or **Search** page to generate a knowledge graph.")
@@ -606,7 +623,11 @@ elif page == "📊 Dashboard":
             ]
         }
         fig = px.funnel(pipeline_data, y='Stage', x='Count', title="Pipeline Funnel")
-        fig.update_layout(paper_bgcolor='#ffffff', plot_bgcolor='#ffffff')
+        fig.update_layout(
+            paper_bgcolor='#1e293b',
+            plot_bgcolor='#1e293b',
+            font=dict(color='#e2e8f0')
+        )
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
@@ -615,7 +636,11 @@ elif page == "📊 Dashboard":
             'Count': [stats['total_users'], stats['total_searches'], stats['total_saved_papers']]
         }
         fig = px.bar(user_data, x='Metric', y='Count', title="User Activity")
-        fig.update_layout(paper_bgcolor='#ffffff', plot_bgcolor='#ffffff')
+        fig.update_layout(
+            paper_bgcolor='#1e293b',
+            plot_bgcolor='#1e293b',
+            font=dict(color='#e2e8f0')
+        )
         st.plotly_chart(fig, use_container_width=True)
 
 elif page == "⚙️ Pipeline":
@@ -703,7 +728,7 @@ elif page == "⚙️ Pipeline":
 
 elif page == "📚 Browse Papers":
     st.markdown("<h1 style='text-align: center;'>Browse Papers</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #94a3b8;'>Explore your research paper collection</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #cbd5e1;'>Explore your research paper collection</p>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
     # Import orchestrator here to avoid circular imports
@@ -936,7 +961,7 @@ elif page == "📚 My Papers":
 # Footer
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
-    <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
-        <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
+    <div style='text-align: center; padding: 1rem; border-top: 1px solid #334155;'>
+        <p style='color: #94a3b8;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
     </div>
 """, unsafe_allow_html=True)

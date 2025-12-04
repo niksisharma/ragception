@@ -131,6 +131,17 @@ st.markdown("""
         font-size: 15px !important;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
+    /* Make chat input scroll with page instead of fixed */
+    .stChatInput {
+        position: relative !important;
+        bottom: auto !important;
+    }
+    
+    /* Remove fixed positioning from chat input container */
+    .stChatFloatingInputContainer {
+        position: relative !important;
+        bottom: auto !important;
+    }
 
     /* Select boxes */
     .stSelectbox>div>div>select {

@@ -13,8 +13,8 @@
   "pdf_directory": "./data/pdfs",
   "database_path": "./data/ragbot.db",
 
-  "days_back": 30,
-  "max_papers_per_run": 100,
+  "days_back": 180,
+  "max_papers_per_run": 1500,
 
   "team_exchange_directory": "./data/team_exchange",
 

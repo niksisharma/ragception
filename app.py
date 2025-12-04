@@ -32,127 +32,139 @@ st.markdown("""
     }
 
     .main {
-        padding: 2rem;
+        padding: 3rem 4rem;
         background-color: #f8f9fa;
-        color: #1e293b;
-
+        color: #2d3748;
     }
 
     h1, h2, h3 {
-        color: #1e293b;
+        color: #2d3748;
         font-weight: 700;
     }
-    h1 { font-size: 2.2rem !important; }
-    h2 { font-size: 1.75rem !important; }
-    h3 { font-size: 1.4rem !important; }
+    h1 { font-size: 2.5rem !important; }
+    h2 { font-size: 1.875rem !important; }
+    h3 { font-size: 1.5rem !important; }
 
     /* Paragraphs and text */
     p, div, span, label {
-        color: #334155 !important;
-        line-height: 1.6;
+        color: #4a5568 !important;
+        line-height: 1.7;
     }
 
-    /* Hero section */
+    /* Hero section - clean and minimal */
     .hero-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 3rem 1.5rem;
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(30, 58, 138, 0.5);
+        padding: 4rem 2rem;
+        background: #ffffff;
+        border-radius: 0;
+        margin-bottom: 3rem;
     }
     .hero-title {
-        font-size: 2.75rem;
+        font-size: 3rem;
         font-weight: 700;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: #2d3748;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
     }
     .hero-subtitle {
-        font-size: 1.15rem;
-        color: #e0e7ff !important;
-        max-width: 700px;
-        line-height: 1.7;
+        font-size: 1.125rem;
+        color: #1e40af !important;
+        max-width: 800px;
+        line-height: 1.8;
+        font-weight: 400;
     }
 
-    /* Chat messages with better contrast */
+    /* Chat messages */
     .chat-message {
         padding: 1.25rem;
-        border-radius: 12px;
-        margin-bottom: 0.75rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
     .user-message {
-        background-color: #e0f2fe;
-        color: #0c4a6e !important;
-        border-left: 4px solid #0284c7;
+        background-color: #eff6ff;
+        color: #1e40af !important;
+        border-left: 4px solid #3b82f6;
     }
     .user-message b {
-        color: #0369a1 !important;
+        color: #1e3a8a !important;
     }
     .bot-message {
-        background-color: #f1f5f9;
-        color: #1e293b !important;
-        border-left: 4px solid #64748b;
+        background-color: #f8fafc;
+        color: #334155 !important;
+        border-left: 4px solid #94a3b8;
     }
     .bot-message b {
-            color: #334155 !important;
+        color: #1e293b !important;
     }
 
-    /* Text inputs with clear visibility */
+    /* Text inputs - clean and simple */
     .stTextInput>div>div>input,
-    .stTextArea>div>div>textarea,
-    .stSelectbox>div>div>select {
+    .stTextArea>div>div>textarea {
         background-color: #ffffff !important;
-        border: 2px solid #cbd5e1 !important;
+        border: 1px solid #e2e8f0 !important;
         border-radius: 8px;
-        padding: 0.875rem !important;
+        padding: 0.875rem 1rem !important;
         font-size: 15px !important;
-        color: #1e293b !important;
+        color: #2d3748 !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
     .stTextInput>div>div>input:focus,
     .stTextArea>div>div>textarea:focus {
         border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         outline: none;
+    }
+    .stTextInput>div>div>input::placeholder {
+        color: #94a3b8 !important;
     }
 
     /* Chat input */
     .stChatInput>div>div>input {
         background-color: #ffffff !important;
-        border: 2px solid #cbd5e1 !important;
-        color: #1e293b !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #2d3748 !important;
         font-size: 15px !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 
     /* Select boxes */
+    .stSelectbox>div>div>select {
+        background-color: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px;
+        padding: 0.75rem 1rem !important;
+        font-size: 15px !important;
+        color: #2d3748 !important;
+    }
     .stSelectbox>div>div>div {
         background-color: #ffffff !important;
-        color: #1e293b !important;
+        color: #2d3748 !important;
     }
 
     /* Result cards */
     .result-card {
         background-color: #ffffff;
-        border: 2px solid #e2e8f0;
-        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         transition: all 0.2s ease;
     }
     .result-card:hover {
-        border-color: #0284c7;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(2, 132, 199, 0.15);
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Sidebar with better contrast */
+    /* Sidebar */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
+        padding: 2rem 1.5rem;
     }
     [data-testid="stSidebar"] h1,
     [data-testid="stSidebar"] h2,
@@ -165,35 +177,42 @@ st.markdown("""
     }
 
     /* Sidebar inputs */
-    [data-testid="stSidebar"] .stTextInput>div>div>input,
-    [data-testid="stSidebar"] .stSelectbox>div>div>select {
-        background-color: #1e3a8a !important;
+    [data-testid="stSidebar"] .stTextInput>div>div>input {
+        background-color: rgba(255, 255, 255, 0.15) !important;
         color: #ffffff !important;
-        border: 2px solid #3b82f6 !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    [data-testid="stSidebar"] .stTextInput>div>div>input::placeholder {
+        color: rgba(255, 255, 255, 0.6) !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox>div>div>select {
+        background-color: #ffffff !important;
+        color: #2d3748 !important;
+        border: 1px solid #e2e8f0 !important;
     }
 
-    /* Buttons with clear contrast */
+    /* Buttons */
     .stButton>button {
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+        background: #3b82f6 !important;
         color: #ffffff !important;
         border: none !important;
         border-radius: 8px;
-        padding: 0.875rem 1.75rem;
+        padding: 0.75rem 1.5rem;
         font-weight: 600;
         font-size: 15px !important;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+        background: #2563eb !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
         transform: translateY(-1px);
     }
 
     /* Expander */
     .streamlit-expanderHeader {
         background-color: #ffffff !important;
-        color: #1e293b !important;
+        color: #2d3748 !important;
         font-size: 15px !important;
         font-weight: 500 !important;
         border: 1px solid #e2e8f0 !important;
@@ -202,29 +221,32 @@ st.markdown("""
 
     /* Metrics */
     [data-testid="stMetricValue"] {
-        color: #1e293b !important;
-        font-size: 1.5rem !important;
+        color: #2d3748 !important;
+        font-size: 1.75rem !important;
         font-weight: 700 !important;
     }
     [data-testid="stMetricLabel"] {
         color: #64748b !important;
         font-size: 14px !important;
         font-weight: 500 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
+    /* Success/Error/Info messages */
     .stSuccess, .stError, .stWarning, .stInfo {
-        color: #1e293b !important;
+        color: #2d3748 !important;
         border-radius: 8px !important;
     }
 
     /* Links */
     a {
-        color: #0284c7 !important;
+        color: #3b82f6 !important;
         text-decoration: none;
         font-weight: 500;
     }
     a:hover {
-        color: #0369a1 !important;
+        color: #2563eb !important;
         text-decoration: underline;
     }
 
@@ -240,25 +262,34 @@ st.markdown("""
         font-weight: 500;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #0284c7 !important;
+        background-color: #3b82f6 !important;
         color: #ffffff !important;
     }
 
     /* Number input */
     .stNumberInput>div>div>input {
         background-color: #ffffff !important;
-        color: #1e293b !important;
-        border: 2px solid #cbd5e1 !important;
+        color: #2d3748 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px;
     }
 
     /* Checkbox */
     .stCheckbox {
-        color: #334155 !important;
+        color: #2d3748 !important;
+    }
+    .stCheckbox label {
+        color: #2d3748 !important;
     }
 
     /* Spinner */
     .stSpinner>div {
-        border-top-color: #0284c7 !important;
+        border-top-color: #3b82f6 !important;
+    }
+
+    /* Horizontal rule */
+    hr {
+        border-color: rgba(255, 255, 255, 0.2) !important;
     }
 
     #MainMenu {visibility: hidden;}
@@ -504,8 +535,12 @@ elif page == "🔍 Search":
             st.warning("No papers found.")
 
 elif page == "🕸️ Knowledge Graph":
-    st.markdown("<h1 style='text-align: center;'>🕸️ Knowledge Graph</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #cbd5e1;'>Visualize relationships between papers and concepts</p>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class='hero-container'>
+            <h1 class='hero-title'>Knowledge Graph</h1>
+            <p class='hero-subtitle'>Visualize relationships between papers and concepts</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     if not st.session_state.conv_memory.current_search_results:
         st.info("👆 First, search for papers in the **Chat** or **Search** page to generate a knowledge graph.")
@@ -595,7 +630,12 @@ elif page == "🕸️ Knowledge Graph":
         )
 
 elif page == "📊 Dashboard":
-    st.markdown("<h1 style='text-align: center;'>Pipeline Dashboard</h1>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class='hero-container'>
+            <h1 class='hero-title'>Pipeline Dashboard</h1>
+            <p class='hero-subtitle'>Monitor your research pipeline</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     stats = db.get_stats()
 
@@ -626,7 +666,7 @@ elif page == "📊 Dashboard":
         fig.update_layout(
             paper_bgcolor='#ffffff',
             plot_bgcolor='#ffffff',
-            font=dict(color='#1e293b')
+            font=dict(color='#2d3748')
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -639,12 +679,17 @@ elif page == "📊 Dashboard":
         fig.update_layout(
             paper_bgcolor='#ffffff',
             plot_bgcolor='#ffffff',
-            font=dict(color='#1e293b')
+            font=dict(color='#2d3748')
         )
         st.plotly_chart(fig, use_container_width=True)
 
 elif page == "⚙️ Pipeline":
-    st.markdown("<h1 style='text-align: center;'>Pipeline Control</h1>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class='hero-container'>
+            <h1 class='hero-title'>Pipeline Control</h1>
+            <p class='hero-subtitle'>Manage and run your data pipeline</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     from orchestrator import PipelineOrchestrator
 
@@ -727,9 +772,12 @@ elif page == "⚙️ Pipeline":
 
 
 elif page == "📚 Browse Papers":
-    st.markdown("<h1 style='text-align: center;'>Browse Papers</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #cbd5e1;'>Explore your research paper collection</p>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class='hero-container'>
+            <h1 class='hero-title'>Browse Papers</h1>
+            <p class='hero-subtitle'>Explore your research paper collection</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     # Import orchestrator here to avoid circular imports
     from orchestrator import PipelineOrchestrator
@@ -882,7 +930,12 @@ elif page == "📚 Browse Papers":
 
 
 elif page == "📚 My Papers":
-    st.markdown("<h1 style='text-align: center;'>My Papers</h1>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class='hero-container'>
+            <h1 class='hero-title'>My Papers</h1>
+            <p class='hero-subtitle'>Manage your saved papers and search history</p>
+        </div>
+    """, unsafe_allow_html=True)
     
     if not st.session_state.user_logged_in:
         st.warning("Please enter your email in the sidebar to view your saved papers.")
@@ -961,7 +1014,7 @@ elif page == "📚 My Papers":
 # Footer
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
-        <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
-        <p style='color: #94a3b8;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
+    <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
+        <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
     </div>
 """, unsafe_allow_html=True)

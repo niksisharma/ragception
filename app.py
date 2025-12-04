@@ -14,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Placeholder imports (assuming these files exist and are correctly implemented)
 from database_manager import DatabaseManager
 from vector_store import VectorStore
 from memory import ConversationMemory, LongTermMemory
@@ -23,7 +22,6 @@ from agent import ResearchAgent
 from email_utils import send_papers_email
 from graph_module import create_graph_for_streamlit, get_graph_stats
 
-# --- START OF CSS UPDATE ---
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -34,239 +32,124 @@ st.markdown("""
     }
 
     .main {
-        padding: 3rem 4rem;
-        background-color: #f8f9fa;
-        color: #2d3748;
+        padding: 2rem;
+        background-color: #ffffff;
+        color: #1e293b;
     }
 
     h1, h2, h3 {
-        color: #2d3748;
+        color: #1e293b;
         font-weight: 700;
     }
-    h1 { font-size: 2.5rem !important; }
-    h2 { font-size: 1.875rem !important; }
-    h3 { font-size: 1.5rem !important; }
+    h1 { font-size: 2.2rem !important; }
+    h2 { font-size: 1.75rem !important; }
+    h3 { font-size: 1.4rem !important; }
 
     /* Paragraphs and text */
     p, div, span, label {
-        color: #4a5568 !important;
-        line-height: 1.7;
+        color: #1e293b !important;
+        line-height: 1.6;
     }
 
-    /* Hero section - clean and minimal */
+    /* Hero section */
     .hero-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 4rem 2rem 2rem 2rem;
-        background: #ffffff;
-        border-radius: 0;
-        margin-bottom: 2rem;
+        padding: 3rem 1.5rem;
+        background-color: #ffffff;
+        border-radius: 16px;
     }
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.75rem;
         font-weight: 700;
-        color: #2d3748;
-        margin-bottom: 1rem;
-        letter-spacing: -0.5px;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
     }
     .hero-subtitle {
-        font-size: 1.125rem;
-        color: #1e40af !important;
-        max-width: 800px;
-        line-height: 1.8;
-        font-weight: 400;
-        margin-bottom: 2rem;
-    }
-    
-    /* --- CUSTOM STYLES TO MATCH SCREENSHOT FOR SEARCH PAGE --- */
-    
-    /* Main Content Area adjustments for centering on Search Page */
-    .block-container {
-        max-width: 100% !important;
-        padding-top: 2rem !important;
-        padding-right: 2rem !important;
-        padding-left: 2rem !important;
-    }
-    
-    /* Hiding the 'Search' label in the main search input */
-    [data-testid="stTextInput"] label {
-        visibility: hidden;
-        height: 0;
-        margin: 0;
+        font-size: 1.15rem;
+        color: #0891b2 !important;
+        max-width: 700px;
+        line-height: 1.7;
     }
 
-    /* Targeting the main search input to look like the screenshot */
-    /* This targets the main Search field on the '🔍 Search' page */
-    .stTextInput:nth-child(2) > div > div > input {
-        border-radius: 10px !important;
-        padding: 1.25rem 1.5rem !important;
-        font-size: 17px !important; /* Slightly larger font */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 2px solid #e2e8f0 !important;
-    }
-    
-    /* Targeting the number input (for results) and giving it a distinct look */
-    /* This targets the 'Results' number input (value '5' in the screenshot) */
-    .stNumberInput {
-        /* Aligning the number input to match the screenshot layout */
-        margin-top: -3rem; /* Adjust to move it up */
-        margin-left: 0rem;
-    }
-    .stNumberInput > div > div > input {
-        background-color: #f1f5f9 !important; /* Light grey background */
-        color: #2d3748 !important;
-        border: none !important; /* Remove border */
-        border-radius: 8px !important;
-        padding: 0.75rem 1rem !important;
-        text-align: center;
-        font-weight: 600 !important;
-        width: 60px; /* Specific width to match */
-        height: 48px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    /* Hiding the label for the number input */
-    .stNumberInput label {
-        visibility: hidden;
-        height: 0;
-        margin: 0;
-    }
-    /* Hiding the up/down buttons on the number input to match the screenshot's static look */
-    .stNumberInput [data-testid="stNumberInputButtons"] {
-        display: none;
-    }
-    
-    /* Making the search button less prominent/hidden (not present in the screenshot) */
-    .stButton {
-        display: none !important; /* Hide the search button from the Streamlit columns */
-    }
-    
-    /* Styling the main Search Title and Subtitle */
-    .hero-title {
-        font-size: 40px !important;
-        font-weight: 700 !important;
-        margin-top: 0 !important;
-        margin-bottom: 10px !important;
-        color: #2d3748 !important;
-    }
-    .hero-subtitle {
-        font-size: 16px !important;
-        color: #64748b !important;
-        margin-bottom: 20px !important;
-    }
-    
-    /* Streamlit components specific for the screenshot layout */
-    /* Targeting the centered layout for the hero section */
-    [data-testid="stVerticalBlock"] > div:nth-child(1) {
-        align-items: center !important;
-        text-align: center !important;
-    }
-
-    /* --- END OF CUSTOM STYLES --- */
-
-    /* Chat messages */
+    /* Chat messages with better contrast */
     .chat-message {
         padding: 1.25rem;
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
     .user-message {
         background-color: #eff6ff;
-        color: #1e40af !important;
+        color: #1e3a8a !important;
         border-left: 4px solid #3b82f6;
     }
     .user-message b {
-        color: #1e3a8a !important;
+        color: #1e40af !important;
     }
     .bot-message {
-        background-color: #f8fafc;
-        color: #334155 !important;
-        border-left: 4px solid #94a3b8;
+        background-color: #f1f5f9;
+        color: #0f172a !important;
+        border-left: 4px solid #64748b;
     }
     .bot-message b {
-        color: #1e293b !important;
+        color: #0f172a !important;
     }
 
-    /* Text inputs - clean and simple */
+    /* Text inputs with clear visibility */
     .stTextInput>div>div>input,
-    .stTextArea>div>div>textarea {
+    .stTextArea>div>div>textarea,
+    .stSelectbox>div>div>select {
         background-color: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
+        border: 2px solid #cbd5e1 !important;
         border-radius: 8px;
-        padding: 0.875rem 1rem !important;
+        padding: 0.875rem !important;
         font-size: 15px !important;
-        color: #2d3748 !important;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        color: #0f172a !important;
     }
     .stTextInput>div>div>input:focus,
     .stTextArea>div>div>textarea:focus {
         border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         outline: none;
     }
-    .stTextInput>div>div>input::placeholder {
-        color: #94a3b8 !important;
-    }
 
-    /* Chat input - remove fixed positioning */
-    .stChatInput {
-        position: relative !important;
-        bottom: auto !important;
-    }
-    .stChatFloatingInputContainer {
-        position: relative !important;
-        bottom: auto !important;
-    }
+    /* Chat input */
     .stChatInput>div>div>input {
         background-color: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
-        color: #2d3748 !important;
+        border: 2px solid #cbd5e1 !important;
+        color: #0f172a !important;
         font-size: 15px !important;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        border-radius: 8px !important;
-        padding: 0.875rem 1rem !important;
-    }
-    .stChatInput>div>div>input::placeholder {
-        color: #94a3b8 !important;
     }
 
     /* Select boxes */
-    .stSelectbox>div>div>select {
-        background-color: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 8px;
-        padding: 0.75rem 1rem !important;
-        font-size: 15px !important;
-        color: #2d3748 !important;
-    }
     .stSelectbox>div>div>div {
         background-color: #ffffff !important;
-        color: #2d3748 !important;
+        color: #0f172a !important;
     }
 
     /* Result cards */
     .result-card {
         background-color: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         transition: all 0.2s ease;
     }
     .result-card:hover {
-        border-color: #cbd5e1;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-color: #3b82f6;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.15);
     }
 
-    /* Sidebar */
+    /* Sidebar with better contrast */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
-        padding: 2rem 1.5rem;
     }
     [data-testid="stSidebar"] h1,
     [data-testid="stSidebar"] h2,
@@ -277,86 +160,37 @@ st.markdown("""
     [data-testid="stSidebar"] div {
         color: #ffffff !important;
     }
-    [data-testid="stSidebar"] a {
-        color: #90cdf4 !important; /* Light blue link color */
-    }
-    [data-testid="stSidebar"] a:hover {
-        color: #ffffff !important;
-    }
-    /* Hiding the 'Your Email' label */
-    [data-testid="stSidebar"] [data-testid="stTextInput"] label {
-        visibility: visible;
-        height: auto;
-        margin-bottom: 0.5rem;
-        color: #ffffff !important;
-    }
-    /* Sidebar RAG Bot title */
-    [data-testid="stSidebar"] h2 {
-        font-size: 1.8rem !important;
-        font-weight: 700 !important;
-    }
-    /* Sidebar Navigation text color to white */
-    [data-testid="stSidebar"] [data-testid="stSelectbox"] label {
-        color: #ffffff !important;
-    }
-    /* Sidebar Quick Stats */
-    [data-testid="stSidebar"] [data-testid="stMetricLabel"] {
-        color: rgba(255, 255, 255, 0.8) !important;
-        font-size: 14px !important;
-    }
-    [data-testid="stSidebar"] [data-testid="stMetricValue"] {
-        color: #ffffff !important;
-        font-size: 1.75rem !important;
-    }
-    
 
     /* Sidebar inputs */
-    [data-testid="stSidebar"] .stTextInput>div>div>input {
-        background-color: rgba(255, 255, 255, 0.15) !important;
-        color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-testid="stSidebar"] .stTextInput>div>div>input::placeholder {
-        color: rgba(255, 255, 255, 0.6) !important;
-    }
+    [data-testid="stSidebar"] .stTextInput>div>div>input,
     [data-testid="stSidebar"] .stSelectbox>div>div>select {
         background-color: #ffffff !important;
-        color: #2d3748 !important;
-        border: 1px solid #e2e8f0 !important;
+        color: #0f172a !important;
+        border: 2px solid #94a3b8 !important;
     }
 
-    /* Buttons */
+    /* Buttons with clear contrast */
     .stButton>button {
-        background: #3b82f6 !important;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
         color: #ffffff !important;
         border: none !important;
         border-radius: 8px;
-        padding: 0.75rem 1.5rem;
+        padding: 0.875rem 1.75rem;
         font-weight: 600;
         font-size: 15px !important;
         transition: all 0.2s ease;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
     }
     .stButton>button:hover {
-        background: #2563eb !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
         transform: translateY(-1px);
-    }
-    /* Targeting the 'Save' button in the results to be less prominent */
-    .stButton button[key^="save_"], .stButton button[key^="search_save_"], .stButton button[key^="graph_save_"] {
-        background: #f1f5f9 !important;
-        color: #3b82f6 !important;
-        box-shadow: none;
-    }
-    .stButton button[key^="save_"]:hover, .stButton button[key^="search_save_"]:hover, .stButton button[key^="graph_save_"]:hover {
-        background: #e2e8f0 !important;
-        box-shadow: none;
     }
 
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: #ffffff !important;
-        color: #2d3748 !important;
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
         font-size: 15px !important;
         font-weight: 500 !important;
         border: 1px solid #e2e8f0 !important;
@@ -365,32 +199,30 @@ st.markdown("""
 
     /* Metrics */
     [data-testid="stMetricValue"] {
-        color: #2d3748 !important;
-        font-size: 1.75rem !important;
+        color: #0f172a !important;
+        font-size: 1.5rem !important;
         font-weight: 700 !important;
     }
     [data-testid="stMetricLabel"] {
-        color: #64748b !important;
+        color: #475569 !important;
         font-size: 14px !important;
         font-weight: 500 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
     /* Success/Error/Info messages */
     .stSuccess, .stError, .stWarning, .stInfo {
-        color: #2d3748 !important;
+        color: #0f172a !important;
         border-radius: 8px !important;
     }
 
     /* Links */
     a {
-        color: #3b82f6 !important;
+        color: #2563eb !important;
         text-decoration: none;
         font-weight: 500;
     }
     a:hover {
-        color: #2563eb !important;
+        color: #1d4ed8 !important;
         text-decoration: underline;
     }
 
@@ -400,7 +232,7 @@ st.markdown("""
     }
     .stTabs [data-baseweb="tab"] {
         background-color: #f1f5f9;
-        color: #64748b;
+        color: #475569;
         border-radius: 8px 8px 0 0;
         padding: 0.75rem 1.5rem;
         font-weight: 500;
@@ -410,99 +242,31 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Number input */
-    .stNumberInput>div>div>input {
-        background-color: #ffffff !important;
-        color: #2d3748 !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 8px;
-    }
-
-    /* Checkbox */
-    .stCheckbox {
-        color: #2d3748 !important;
-    }
-    .stCheckbox label {
-        color: #2d3748 !important;
-    }
-
-    /* Spinner */
-    .stSpinner>div {
-        border-top-color: #3b82f6 !important;
-    }
-
-    /* Horizontal rule */
-    hr {
-        border-color: rgba(255, 255, 255, 0.2) !important;
-    }
-
-    /* Footer positioning */
-    .block-container {
-        padding-bottom: 3rem !important;
-    }
-
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    
-    /* Custom Footer to match screenshot */
-    .stMarkdown div:last-child {
-        text-align: center;
-        margin-top: 5rem;
-        font-size: 12px;
-        color: #94a3b8 !important;
-    }
 </style>
 """, unsafe_allow_html=True)
-# --- END OF CSS UPDATE ---
 
 
 @st.cache_resource
 def init_components():
     """Initialize all components once"""
-    # NOTE: Assuming these classes and functions are defined elsewhere in the project
-    class MockDatabaseManager:
-        def get_stats(self): return {'total_papers': 55, 'processed_papers': 53, 'papers_with_embeddings': 53, 'total_chunks': 1000, 'total_users': 10, 'total_searches': 50, 'total_saved_papers': 20}
-        def get_paper_summary(self, arxiv_id): return {'abstract_summary': 'Summary of the abstract.', 'methodology': 'Methodology section.', 'results': 'Results section.', 'related_work': 'Related work section.', 'structure_score': 95}
-    class MockVectorStore:
-        def __init__(self, reranker): pass
-        def semantic_search(self, query, n_results, use_reranker, user_interests):
-            # Mock results for demo
-            return [{'title': f'Paper {i}: {query}', 'arxiv_id': f'2301.0000{i}', 'similarity': 0.85 - i * 0.05, 'rerank_score': 0.95 - i * 0.05, 'abstract': 'This is a mock abstract for a research paper on RAG, LLMs, and semantic search. It is highly relevant to the query.', 'relevant_chunk': 'The key finding relates to novel reranking techniques.'} for i in range(1, n_results + 1)]
-    class MockLLMReranker: pass
-    class MockConversationMemory:
-        def __init__(self): self.messages = []; self.current_search_results = []; self.current_topic = ""
-        def add_message(self, role, content): self.messages.append({'role': role, 'content': content})
-        def set_search_results(self, results, topic): self.current_search_results = results; self.current_topic = topic
-        def clear(self): self.messages = []; self.current_search_results = []; self.current_topic = ""
-    class MockLongTermMemory:
-        def __init__(self, db): self.db = db
-        def get_saved_papers(self, user_id): return []
-        def get_user_interests(self, user_id): return []
-        def add_search(self, user_id, query, count): pass
-        def save_paper(self, user_id, arxiv_id): pass
-    class MockResearchAgent:
-        def __init__(self, vector_store, db_manager, conversation_memory, long_term_memory, reranker):
-            self.current_user_id = 'mock_user_123'
-        def set_user(self, email): pass
-        def set_email_credentials(self, user, password): pass
-        def chat(self, user_input): return f"Assistant response to: {user_input}"
-    
-    db = MockDatabaseManager() # Replaced with Mock
-    reranker = MockLLMReranker() # Replaced with Mock
-    vector_store = MockVectorStore(reranker=reranker) # Replaced with Mock
+    db = DatabaseManager()
+    reranker = LLMReranker()
+    vector_store = VectorStore(reranker=reranker)
     return db, vector_store, reranker
 
 db, vector_store, reranker = init_components()
 
 # Session-based components (not cached)
 if 'conv_memory' not in st.session_state:
-    st.session_state.conv_memory = ConversationMemory() # Assumes this is a Mock or real class
+    st.session_state.conv_memory = ConversationMemory()
 
 if 'lt_memory' not in st.session_state:
-    st.session_state.lt_memory = LongTermMemory(db) # Assumes this is a Mock or real class
+    st.session_state.lt_memory = LongTermMemory(db)
 
 if 'agent' not in st.session_state:
-    st.session_state.agent = ResearchAgent( # Assumes this is a Mock or real class
+    st.session_state.agent = ResearchAgent(
         vector_store=vector_store,
         db_manager=db,
         conversation_memory=st.session_state.conv_memory,
@@ -516,14 +280,10 @@ if 'user_email' not in st.session_state:
 if 'user_logged_in' not in st.session_state:
     st.session_state.user_logged_in = False
 
-# --- Sidebar Logic (Minor updates for metric display to match screenshot) ---
 with st.sidebar:
-    st.markdown("## 🤖 RAG Bot")
+    st.markdown("<h2 style='text-align: center;'>🤖 RAG Bot</h2>", unsafe_allow_html=True)
     st.markdown("### 👤 User Profile")
 
-    # Get current user state for display
-    current_email_display = st.session_state.user_email or "you@example.com"
-    
     user_email = st.text_input(
         "Your Email",
         value=st.session_state.user_email or "",
@@ -547,90 +307,21 @@ with st.sidebar:
 
     page = st.selectbox(
         "Navigation",
-        ["💬 Chat", "🔍 Search", "🕸️ Knowledge Graph", "📊 Dashboard", "⚙️ Pipeline", "📚 Browse Papers", "📚 My Papers"],
-        index=1 # Set default to Search to match the screenshot context
+        ["💬 Chat", "🔍 Search", "🕸️ Knowledge Graph", "📊 Dashboard", "⚙️ Pipeline", "📚 Browse Papers", "📚 My Papers"]
     )
     
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    st.markdown("### Quick Stats")
+    st.markdown("### 📈 Stats")
     stats = db.get_stats()
 
-    # Updated Quick Stats to match the layout and values from the screenshot
-    st.markdown("""
-        <div style="
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        ">
-            <div style="
-                border-radius: 8px;
-                padding: 0.5rem 0.5rem;
-            ">
-                <p style="
-                    font-size: 16px !important;
-                    font-weight: 500;
-                    margin-bottom: 0.2rem;
-                ">Papers</p>
-                <h3 style="
-                    font-size: 2.2rem !important;
-                    font-weight: 700;
-                    margin: 0;
-                    color: #ffffff !important;
-                ">55</h3>
-            </div>
-            <div style="
-                border-radius: 8px;
-                padding: 0.5rem 0.5rem;
-            ">
-                <p style="
-                    font-size: 16px !important;
-                    font-weight: 500;
-                    margin-bottom: 0.2rem;
-                ">Processed</p>
-                <h3 style="
-                    font-size: 2.2rem !important;
-                    font-weight: 700;
-                    margin: 0;
-                    color: #ffffff !important;
-                ">53</h3>
-            </div>
-            <div style="
-                border-radius: 8px;
-                padding: 0.5rem 0.5rem;
-            ">
-                <p style="
-                    font-size: 16px !important;
-                    font-weight: 500;
-                    margin-bottom: 0.2rem;
-                ">Embedded</p>
-                <h3 style="
-                    font-size: 2.2rem !important;
-                    font-weight: 700;
-                    margin: 0;
-                    color: #ffffff !important;
-                ">53</h3>
-            </div>
-            <div style="
-                border-radius: 8px;
-                padding: 0.5rem 0.5rem;
-            ">
-                <p style="
-                    font-size: 16px !important;
-                    font-weight: 500;
-                    margin-bottom: 0.2rem;
-                ">Cost</p>
-                <h3 style="
-                    font-size: 2.2rem !important;
-                    font-weight: 700;
-                    margin: 0;
-                    color: #ffffff !important;
-                ">$0.0075</h3>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Papers", stats['total_papers'])
+        st.metric("Embedded", stats['papers_with_embeddings'])
+    with col2:
+        st.metric("Users", stats['total_users'])
+        st.metric("Searches", stats['total_searches'])
 
     with st.expander("📧 Email Settings"):
         smtp_user = st.text_input("SMTP Email", placeholder="your@gmail.com")
@@ -640,7 +331,6 @@ with st.sidebar:
             st.session_state.agent.set_email_credentials(smtp_user, smtp_pass)
             st.success("Email configured!")
 
-# --- Main Page Logic ---
 if page == "💬 Chat":
     st.markdown("""
         <div class='hero-container'>
@@ -650,24 +340,28 @@ if page == "💬 Chat":
         </div>
     """, unsafe_allow_html=True)
 
-    user_input = st.chat_input("Ask about papers... (e.g., 'Find papers on hallucination in LLMs')")
-
-    if user_input:
-        st.session_state.conv_memory.add_message("user", user_input)
-        with st.spinner("Thinking..."):
-            response = st.session_state.agent.chat(user_input)
-            st.session_state.conv_memory.add_message("assistant", response)
-        st.rerun()
-
     st.markdown("### 💬 Conversation")
 
     for msg in st.session_state.conv_memory.messages:
         if msg['role'] == 'user':
             st.markdown(f"<div class='chat-message user-message'><b>You:</b> {msg['content']}</div>", 
-                        unsafe_allow_html=True)
+                       unsafe_allow_html=True)
         else:
             st.markdown(f"<div class='chat-message bot-message'><b>Assistant:</b> {msg['content']}</div>",
-                        unsafe_allow_html=True)
+                       unsafe_allow_html=True)
+
+    user_input = st.chat_input("Ask about papers... (e.g., 'Find papers on hallucination in LLMs')")
+
+    if user_input:
+        st.markdown(f"<div class='chat-message user-message'><b>You:</b> {user_input}</div>",
+                   unsafe_allow_html=True)
+
+        with st.spinner("Thinking..."):
+            response = st.session_state.agent.chat(user_input)
+
+        st.markdown(f"<div class='chat-message bot-message'><b>Assistant:</b> {response}</div>",
+                   unsafe_allow_html=True)
+        st.rerun()
 
     if st.session_state.conv_memory.current_search_results:
         st.markdown("---")
@@ -710,60 +404,31 @@ if page == "💬 Chat":
             st.rerun()
 
 elif page == "🔍 Search":
-    # --- UPDATED SEARCH PAGE CONTENT TO MATCH SCREENSHOT ---
     st.markdown("""
         <div class='hero-container'>
-            <h1 class='hero-title'>Research Paper Library</h1>
-            <p class='hero-subtitle' style="color: #64748b !important;">
-                Explore our collection of **RAG** and **LLM** research papers using semantic search. Find the most relevant papers for your research needs.
-            </p>
+            <h1 class='hero-title'>Search Papers</h1>
+            <p class='hero-subtitle'>Semantic search with RAG and LLM reranking</p>
         </div>
     """, unsafe_allow_html=True)
 
-    # Use a wide column block to center the search input
-    col_pre, col_main, col_post = st.columns([1, 3, 1])
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        query = st.text_input(
+            "Search",
+            placeholder="Enter your search query...",
+            label_visibility="collapsed"
+        )
+        
+        col_a, col_b, col_c = st.columns(3)
+        with col_a:
+            n_results = st.number_input("Results", 1, 20, 5)
+        with col_b:
+            use_reranker = st.checkbox("Use LLM Reranking", value=True)
+        with col_c:
+            search_btn = st.button("🔍 Search", type="primary")
     
-    with col_main:
-        # Use a form to group search elements
-        with st.form(key='search_form'):
-            search_query = st.text_input(
-                "Search Papers by Topic",
-                placeholder="Search papers by topic, methodology, or keywords...",
-                label_visibility="visible" # Label is visible but styled to be hidden by CSS
-            )
-
-            # Use columns to align the number input (which displays "5") next to the main search bar
-            # We create a container that looks like the screenshot
-            col_search_btn, col_num_input, col_rerank = st.columns([1, 0.15, 1]) # Adjust ratios for spacing
-            
-            with col_num_input:
-                # The number input to represent the "5"
-                n_results = st.number_input(
-                    "Results Count",
-                    min_value=1,
-                    max_value=20,
-                    value=5,
-                    label_visibility="collapsed" # Hide the label explicitly
-                )
-            
-            # Since the button is not visible in the screenshot, we use the submit button implicitly
-            search_btn = st.form_submit_button("Hidden Search Button", disabled=True)
-            # The actual search will be triggered by the user hitting enter on the text input, or a hidden button press.
-            # However, since the screenshot only shows the input and the '5', we'll rely on the text input's implicit submit behavior in a form.
-            # To adhere strictly to the screenshot, we don't display a visible button.
-
-    # Display the footer
-    st.markdown("""
-        <div style="text-align: center; margin-top: 5rem; font-size: 12px; color: #94a3b8;">
-            RAG Research Bot v1.0 • Built with Streamlit
-        </div>
-    """, unsafe_allow_html=True)
-    
-    # --- END OF UPDATED SEARCH PAGE CONTENT ---
-
-    if search_query: # Only proceed if the user entered something
+    if query and search_btn:
         with st.spinner("Searching and reranking..."):
-            use_reranker = False # Assuming no reranker checkbox is available in this minimal UI
             user_interests = []
             if st.session_state.user_logged_in:
                 user_interests = st.session_state.lt_memory.get_user_interests(
@@ -771,24 +436,23 @@ elif page == "🔍 Search":
                 )
 
             results = vector_store.semantic_search(
-                search_query,
+                query,
                 n_results=n_results,
                 use_reranker=use_reranker,
                 user_interests=user_interests
             )
 
-            st.session_state.conv_memory.set_search_results(results, search_query)
+            st.session_state.conv_memory.set_search_results(results, query)
 
             if st.session_state.user_logged_in:
                 st.session_state.lt_memory.add_search(
                     st.session_state.agent.current_user_id,
-                    search_query,
+                    query,
                     len(results)
                 )
 
         if results:
-            st.success(f"Found {len(results)} papers")
-            st.markdown("---")
+            st.success(f"Found {len(results)} papers" + (" (reranked)" if use_reranker else ""))
 
             for i, paper in enumerate(results, 1):
                 with st.expander(f"#{i} - {paper['title']}", expanded=(i == 1)):
@@ -806,7 +470,7 @@ elif page == "🔍 Search":
                         if paper.get('relevant_chunk'):
                             st.markdown("**Most Relevant Section:**")
                             st.info(paper['relevant_chunk'])
-                            
+                    
                     with col2:
                         st.markdown(f"[📄 ArXiv](https://arxiv.org/abs/{paper['arxiv_id']})")
                         
@@ -820,24 +484,457 @@ elif page == "🔍 Search":
         else:
             st.warning("No papers found.")
 
-
-# Remaining pages' logic (omitted for brevity, as they were not requested for update, but kept as placeholders)
 elif page == "🕸️ Knowledge Graph":
-    st.markdown("Knowledge Graph page content...")
-    # ... (Keep original logic)
+    st.markdown("<h1 style='text-align: center;'>🕸️ Knowledge Graph</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #64748b;'>Visualize relationships between papers and concepts</p>", unsafe_allow_html=True)
+
+    if not st.session_state.conv_memory.current_search_results:
+        st.info("👆 First, search for papers in the **Chat** or **Search** page to generate a knowledge graph.")
+
+        st.markdown("### Quick Search")
+        quick_query = st.text_input("Enter a topic to search:", placeholder="e.g., retrieval augmented generation")
+
+        if st.button("🔍 Search & Generate Graph", type="primary"):
+            if quick_query:
+                with st.spinner("Searching papers..."):
+                    results = vector_store.semantic_search(quick_query, n_results=5)
+                    st.session_state.conv_memory.set_search_results(results, quick_query)
+                    st.rerun()
+    else:
+        papers = st.session_state.conv_memory.current_search_results
+        topic = st.session_state.conv_memory.current_topic
+
+        st.success(f"📊 Showing graph for **{len(papers)} papers** on topic: **{topic}**")
+
+        col1, col2, col3 = st.columns([2, 1, 1])
+        with col1:
+            st.markdown(f"**Papers in graph:** {len(papers)}")
+        with col2:
+            show_shared = st.checkbox("Highlight shared concepts", value=True)
+        with col3:
+            if st.button("🔄 Refresh Graph"):
+                st.rerun()
+
+        stats = get_graph_stats(papers)
+
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Papers", stats["total_papers"])
+        with col2:
+            st.metric("Concepts", stats["total_concepts"])
+        with col3:
+            st.metric("Shared", stats["shared_concepts"])
+        with col4:
+            st.metric("Unique", stats["unique_concepts"])
+
+        st.markdown("### 📈 Interactive Knowledge Graph")
+        st.markdown("*🔵 Blue = Papers | 🟠 Orange = Shared Concepts | 🟢 Green = Unique Concepts*")
+
+        with st.spinner("Generating knowledge graph..."):
+            graph_html = create_graph_for_streamlit(papers, graph_type="simple")
+
+        components.html(graph_html, height=650, scrolling=True)
+
+        if stats["shared_list"]:
+            st.markdown("### 🔗 Shared Concepts Across Papers")
+
+            shared_concepts = stats["shared_list"]
+            concept_details = stats["concept_details"]
+
+            for concept in shared_concepts:
+                papers_with_concept = concept_details.get(concept, [])
+                with st.expander(f"**{concept}** (in {len(papers_with_concept)} papers)"):
+                    for p in papers_with_concept:
+                        st.markdown(f"- {p[:80]}...")
+
+        st.markdown("### 📄 Papers & Their Concepts")
+
+        for i, paper in enumerate(papers, 1):
+            title = paper.get('title', f'Paper {i}')
+            abstract = paper.get('abstract', '')
+            from graph_module import extract_simple_concepts
+            concepts = extract_simple_concepts(title + " " + abstract)
+
+            with st.expander(f"#{i} - {title[:60]}..."):
+                st.markdown(f"**ArXiv ID:** {paper.get('arxiv_id', 'N/A')}")
+                st.markdown(f"**Concepts ({len(concepts)}):** {', '.join(concepts[:15])}")
+
+                if st.session_state.user_logged_in:
+                    if st.button(f"💾 Save Paper", key=f"graph_save_{i}"):
+                        st.session_state.lt_memory.save_paper(
+                            st.session_state.agent.current_user_id,
+                            paper.get('arxiv_id')
+                        )
+                        st.success("Saved!")
+
+        st.markdown("---")
+        st.download_button(
+            label="📥 Download Graph HTML",
+            data=graph_html,
+            file_name="knowledge_graph.html",
+            mime="text/html"
+        )
 
 elif page == "📊 Dashboard":
-    st.markdown("Dashboard page content...")
-    # ... (Keep original logic)
+    st.markdown("<h1 style='text-align: center;'>Pipeline Dashboard</h1>", unsafe_allow_html=True)
+
+    stats = db.get_stats()
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Total Papers", stats['total_papers'])
+    with col2:
+        st.metric("Processed", stats['processed_papers'])
+    with col3:
+        st.metric("Embedded", stats['papers_with_embeddings'])
+    with col4:
+        st.metric("Total Chunks", stats['total_chunks'])
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        pipeline_data = {
+            'Stage': ['Fetched', 'Processed', 'Embedded'],
+            'Count': [
+                stats['total_papers'],
+                stats['processed_papers'],
+                stats['papers_with_embeddings']
+            ]
+        }
+        fig = px.funnel(pipeline_data, y='Stage', x='Count', title="Pipeline Funnel")
+        fig.update_layout(paper_bgcolor='#ffffff', plot_bgcolor='#ffffff')
+        st.plotly_chart(fig, use_container_width=True)
+
+    with col2:
+        user_data = {
+            'Metric': ['Users', 'Searches', 'Saved Papers'],
+            'Count': [stats['total_users'], stats['total_searches'], stats['total_saved_papers']]
+        }
+        fig = px.bar(user_data, x='Metric', y='Count', title="User Activity")
+        fig.update_layout(paper_bgcolor='#ffffff', plot_bgcolor='#ffffff')
+        st.plotly_chart(fig, use_container_width=True)
 
 elif page == "⚙️ Pipeline":
-    st.markdown("Pipeline control page content...")
-    # ... (Keep original logic)
+    st.markdown("<h1 style='text-align: center;'>Pipeline Control</h1>", unsafe_allow_html=True)
+
+    from orchestrator import PipelineOrchestrator
+
+    @st.cache_resource
+    def get_orchestrator():
+        return PipelineOrchestrator()
+
+    orchestrator = get_orchestrator()
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("### Run Pipeline")
+        days = st.number_input("Days back", 1, 365, 7)
+        max_papers = st.number_input("Max papers", 1, 200, 50)
+        
+        if st.button("🚀 Run Complete Pipeline", type="primary"):
+            with st.spinner("Running pipeline..."):
+                results = orchestrator.run_complete_pipeline()
+                
+                if results['status'] == 'SUCCESS':
+                    st.success("Pipeline completed successfully!")
+
+                    fetch = results['steps'].get('fetch', {})
+                    parse = results['steps'].get('parse', {})
+                    embed = results['steps'].get('embeddings', {})
+                    summaries = results['steps'].get('summaries', {})
+
+                    # Build results display
+                    results_text = f"""
+                    **Results:**
+                    - Papers fetched: {fetch.get('papers_stored', 0)}
+                    - Papers parsed: {parse.get('success', 0)}
+                    - Embeddings created: {embed.get('success', 0)}
+                    - Embedding API cost: ${embed.get('estimated_cost', 0):.4f}
+                    """
+
+                    # Add summary results if not skipped
+                    if not summaries.get('skipped', False):
+                        results_text += f"""
+                    - Summaries generated: {summaries.get('success', 0)}
+                    - Summary API cost: ${summaries.get('estimated_cost', 0):.4f}
+                    - **Total API cost: ${embed.get('estimated_cost', 0) + summaries.get('estimated_cost', 0):.4f}**
+                    """
+                    else:
+                        results_text += "\n- Summaries: Skipped (disabled or unavailable)"
+
+                    st.markdown(results_text)
+                else:
+                    st.error(f"Pipeline failed: {results.get('error', 'Unknown error')}")
+    
+    with col2:
+        st.markdown("### Individual Steps")
+        
+        if st.button("📥 Fetch Papers"):
+            with st.spinner("Fetching..."):
+                r = orchestrator.arxiv_bot.fetch_recent_papers(days, max_papers)
+                st.success(f"Fetched {r['papers_stored']} papers")
+        
+        if st.button("📄 Parse PDFs"):
+            with st.spinner("Parsing..."):
+                r = orchestrator.pdf_parser.parse_all_unprocessed()
+                st.success(f"Parsed {r['success']} papers")
+        
+        if st.button("🔮 Create Embeddings"):
+            with st.spinner("Creating embeddings..."):
+                r = orchestrator.vector_store.process_all_papers()
+                st.success(f"Embedded {r['success']} papers (${r['estimated_cost']:.4f})")
+
+        if st.button("📝 Generate Summaries"):
+            with st.spinner("Generating summaries..."):
+                if orchestrator.summarizer_enabled and orchestrator.summarizer:
+                    summary_results = orchestrator.summarizer.generate_summaries_batch(limit=max_papers)
+                    st.success(f"Generated summaries for {summary_results['success']} papers")
+                    st.info(f"API cost: ${summary_results['estimated_cost']:.4f}")
+                    if summary_results['failed']:
+                        st.warning(f"Failed: {len(summary_results['failed'])} papers")
+                else:
+                    st.error("Summarizer not available")
+
 
 elif page == "📚 Browse Papers":
-    st.markdown("Browse Papers page content...")
-    # ... (Keep original logic)
+    st.markdown("<h1 style='text-align: center;'>Browse Papers</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: #94a3b8;'>Explore your research paper collection</p>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Import orchestrator here to avoid circular imports
+    from orchestrator import PipelineOrchestrator
+
+    @st.cache_resource
+    def get_orchestrator():
+        return PipelineOrchestrator()
+
+    orchestrator = get_orchestrator()
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        filter_processed = st.checkbox("Only processed papers", value=False)
+    with col2:
+        filter_embedded = st.checkbox("Only with embeddings", value=False)
+    with col3:
+        filter_summarized = st.checkbox("Only with summaries", value=False)
+    with col4:
+        sort_order = st.selectbox("Sort by", ["Recent", "Title"])
+
+    papers = orchestrator.get_recent_papers(50)
+    filtered_papers = papers
+    if filter_processed:
+        filtered_papers = [p for p in filtered_papers if p['processed']]
+    if filter_embedded:
+        filtered_papers = [p for p in filtered_papers if p['has_embeddings']]
+    if filter_summarized:
+        filtered_papers = [p for p in filtered_papers if p.get('has_summary', False)]
+
+    if sort_order == "Title":
+        filtered_papers.sort(key=lambda x: x['title'])
+
+    st.markdown(f"**Showing {len(filtered_papers)} of {len(papers)} papers**")
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    for paper in filtered_papers:
+        with st.expander(f"{paper['title'][:100]}..."):
+            col1, col2 = st.columns([3, 1])
+
+            with col1:
+                st.markdown(f"**ArXiv ID:** {paper['arxiv_id']}")
+                st.markdown(f"**Published:** {paper.get('published_date', 'N/A')}")
+
+                # Check if summary exists
+                has_summary = paper.get('has_summary', False)
+
+                if has_summary:
+                    # Fetch and display summary
+                    summary = orchestrator.db.get_paper_summary(paper['arxiv_id'])
+                    if summary:
+                        st.markdown("### Structured Summary")
+
+                        # Create tabs for summary sections
+                        tab1, tab2, tab3, tab4 = st.tabs(["Overview", "Methodology", "Results", "Related Work"])
+
+                        with tab1:
+                            abstract = summary.get('abstract_summary', '').strip() if summary.get('abstract_summary') else ''
+                            if abstract:
+                                st.markdown("**Abstract:**")
+                                st.markdown(abstract)
+                            else:
+                                st.info("No abstract available")
+
+                            if summary.get('date'):
+                                st.markdown(f"**Date:** {summary.get('date')}")
+                            if summary.get('authors'):
+                                st.markdown(f"**Authors:** {summary.get('authors')}")
+
+                        with tab2:
+                            methodology = summary.get('methodology', '').strip() if summary.get('methodology') else ''
+                            if methodology:
+                                st.markdown(methodology)
+                            else:
+                                st.info("No methodology information available")
+
+                        with tab3:
+                            results = summary.get('results', '').strip() if summary.get('results') else ''
+                            if results:
+                                st.markdown(results)
+                            else:
+                                st.info("No results information available")
+
+                        with tab4:
+                            related_work = summary.get('related_work', '').strip() if summary.get('related_work') else ''
+                            if related_work:
+                                st.markdown(related_work)
+                            else:
+                                st.info("No related work information available")
+
+                        if summary.get('structure_score'):
+                            st.caption(f"Summary Quality: {summary['structure_score']:.0f}%")
+
+                        # Fallback: if all structured fields are empty, show raw summary
+                        all_empty = not any([
+                            summary.get('abstract_summary', '').strip(),
+                            summary.get('methodology', '').strip(),
+                            summary.get('results', '').strip(),
+                            summary.get('related_work', '').strip()
+                        ])
+
+                        if all_empty and summary.get('raw_summary'):
+                            st.warning("Structured sections unavailable - showing raw summary:")
+                            st.text_area("Raw Summary", summary['raw_summary'], height=300, disabled=True)
+                else:
+                    # Show abstract if no summary
+                    if paper.get('abstract'):
+                        st.markdown("**Abstract:**")
+                        st.markdown(paper['abstract'])
+
+            with col2:
+                st.markdown("**Status:**")
+                if paper['pdf_downloaded']:
+                    st.markdown("✅ PDF Downloaded")
+                if paper['processed']:
+                    st.markdown("✅ Parsed")
+                if paper['has_embeddings']:
+                    st.markdown("✅ Embeddings")
+                if has_summary:
+                    st.markdown("✅ Summary")
+
+                st.markdown(f"[📄 View on ArXiv](https://arxiv.org/abs/{paper['arxiv_id']})")
+
+                st.markdown("<br>", unsafe_allow_html=True)
+
+                # Add summary generation button if not yet summarized
+                if not has_summary and paper['processed']:
+                    if st.button(f"Generate Summary", key=f"gen_{paper['arxiv_id']}"):
+                        with st.spinner("Generating summary..."):
+                            if orchestrator.summarizer_enabled and orchestrator.summarizer:
+                                success = orchestrator.summarizer.generate_summary(paper['arxiv_id'])
+                                if success:
+                                    st.success("Summary generated!")
+                                    st.rerun()
+                                else:
+                                    st.error("Failed to generate summary")
+                            else:
+                                st.error("Summarizer not available")
+                elif has_summary:
+                    if st.button(f"Regenerate", key=f"regen_{paper['arxiv_id']}"):
+                        with st.spinner("Regenerating summary..."):
+                            if orchestrator.summarizer_enabled and orchestrator.summarizer:
+                                success = orchestrator.summarizer.regenerate_summary(paper['arxiv_id'], force=True)
+                                if success:
+                                    st.success("Summary regenerated!")
+                                    st.rerun()
+                                else:
+                                    st.error("Failed to regenerate summary")
+                            else:
+                                st.error("Summarizer not available")
+
 
 elif page == "📚 My Papers":
-    st.markdown("My Papers page content...")
-    # ... (Keep original logic)
+    st.markdown("<h1 style='text-align: center;'>My Papers</h1>", unsafe_allow_html=True)
+    
+    if not st.session_state.user_logged_in:
+        st.warning("Please enter your email in the sidebar to view your saved papers.")
+    else:
+        user_id = st.session_state.agent.current_user_id
+        
+        # Tabs for different views
+        tab1, tab2, tab3 = st.tabs(["💾 Saved Papers", "🔍 Search History", "📊 My Stats"])
+        
+        with tab1:
+            saved_papers = st.session_state.lt_memory.get_saved_papers(user_id)
+            
+            if saved_papers:
+                st.markdown(f"**{len(saved_papers)} saved papers**")
+                
+                for paper in saved_papers:
+                    with st.expander(f"{paper['title'][:80]}..."):
+                        st.markdown(f"**ArXiv ID:** {paper['arxiv_id']}")
+                        st.markdown(f"**Saved:** {paper['saved_at']}")
+                        st.markdown(f"**Abstract:** {paper['abstract']}")
+                        
+                        if paper.get('notes'):
+                            st.info(f"**Your notes:** {paper['notes']}")
+                        
+                        # Add note
+                        note = st.text_area(
+                            "Add/Update note", 
+                            value=paper.get('notes', ''),
+                            key=f"note_{paper['arxiv_id']}"
+                        )
+                        
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            if st.button("💾 Save Note", key=f"savenote_{paper['arxiv_id']}"):
+                                st.session_state.lt_memory.add_note(user_id, paper['arxiv_id'], note)
+                                st.success("Note saved!")
+                        with col2:
+                            if st.button("🗑️ Remove", key=f"remove_{paper['arxiv_id']}"):
+                                st.session_state.lt_memory.unsave_paper(user_id, paper['arxiv_id'])
+                                st.rerun()
+                        
+                        st.markdown(f"[📄 View on ArXiv](https://arxiv.org/abs/{paper['arxiv_id']})")
+            else:
+                st.info("No saved papers yet. Use the chat or search to find and save papers!")
+        
+        with tab2:
+            history = st.session_state.lt_memory.get_search_history(user_id, limit=20)
+            
+            if history:
+                st.markdown("**Recent Searches**")
+                
+                for search in history:
+                    st.markdown(f"- **{search['query']}** ({search['results_count']} results) - {search['timestamp']}")
+            else:
+                st.info("No search history yet.")
+        
+        with tab3:
+            st.markdown("### Your Activity")
+            
+            saved_count = len(st.session_state.lt_memory.get_saved_papers(user_id))
+            search_count = len(st.session_state.lt_memory.get_search_history(user_id, limit=100))
+            frequent = st.session_state.lt_memory.get_frequent_topics(user_id, limit=5)
+            
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("Papers Saved", saved_count)
+            with col2:
+                st.metric("Searches Made", search_count)
+            
+            if frequent:
+                st.markdown("**Your Top Topics:**")
+                for topic in frequent:
+                    st.markdown(f"- {topic}")
+
+
+# Footer
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("""
+    <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
+        <p style='color: #64748b;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
+    </div>
+""", unsafe_allow_html=True)

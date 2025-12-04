@@ -1,7 +1,4 @@
-"""
-Preview Fetch - See what papers would be fetched without downloading or using API tokens
-Author: Amaan
-"""
+"""Preview Fetch - See what papers would be fetched without downloading or using API tokens"""
 
 import arxiv
 import json
@@ -10,19 +7,13 @@ from typing import Dict, List
 import time
 
 def preview_fetch(show_titles=True, test_days=None, test_max_results=None):
-    """
-    Preview what papers would be fetched based on config
-    WITHOUT downloading PDFs or using OpenAI API
-    """
-    
+    """Preview what papers would be fetched based on config"""
     print("🔍 FETCH PREVIEW - No downloads, No API costs!")
     print("="*60)
-    
-    # Load configuration
+
     with open('config.json', 'r') as f:
         config = json.load(f)
-    
-    # Use test parameters or config defaults
+
     days_back = test_days if test_days else config.get('days_back', 7)
     max_results = test_max_results if test_max_results else config.get('max_papers_per_run', 50)
     

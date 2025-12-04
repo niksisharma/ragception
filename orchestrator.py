@@ -1,7 +1,4 @@
-"""
-Pipeline Orchestrator - Coordinates all components
-Author: Amaan
-"""
+"""Pipeline Orchestrator - Coordinates all components"""
 
 import json
 import os
@@ -11,12 +8,12 @@ import schedule
 import time
 from typing import Dict
 
-# Import components with error handling
 try:
     from database_manager import DatabaseManager
     from arxiv_bot import ArxivBot
     from pdf_parser import PDFParser
     from vector_store import VectorStore
+    from paper_summarizer import PaperSummarizer
 except ImportError as e:
     print(f"Error importing components: {e}")
     print("Make sure all component files are in the same directory.")
@@ -34,33 +31,39 @@ class PipelineOrchestrator:
     
     def __init__(self):
         logger.info("Initializing Pipeline Orchestrator...")
-        
-        # Load configuration
+
         with open('config.json', 'r') as f:
             self.config = json.load(f)
-        
-        # Initialize components
+
         self.db = DatabaseManager()
         self.arxiv_bot = ArxivBot()
         self.pdf_parser = PDFParser()
         self.vector_store = VectorStore()
-        
+
+        try:
+            self.summarizer = PaperSummarizer()
+            self.summarizer_enabled = True
+            logger.info("Paper Summarizer initialized successfully")
+        except Exception as e:
+            logger.warning(f"Paper Summarizer not available: {e}")
+            self.summarizer = None
+            self.summarizer_enabled = False
+
         logger.info("Orchestrator ready!")
-    
+
     def run_complete_pipeline(self) -> Dict:
         """Run the entire pipeline end-to-end"""
         logger.info("="*60)
         logger.info("STARTING COMPLETE PIPELINE")
         logger.info("="*60)
-        
+
         start_time = datetime.now()
         results = {
             'start_time': start_time.isoformat(),
             'steps': {}
         }
-        
+
         try:
-            # Step 1: Fetch new papers
             logger.info("Step 1: Fetching papers from arXiv...")
             fetch_results = self.arxiv_bot.fetch_recent_papers(
                 days_back=self.config.get('days_back', 7),
@@ -68,33 +71,40 @@ class PipelineOrchestrator:
             )
             results['steps']['fetch'] = fetch_results
             logger.info(f"✓ Fetched {fetch_results['papers_stored']} papers")
-            
-            # Step 2: Parse PDFs
+
             logger.info("Step 2: Parsing PDF documents...")
             parse_results = self.pdf_parser.parse_all_unprocessed()
             results['steps']['parse'] = parse_results
             logger.info(f"✓ Parsed {parse_results['success']} papers")
-            
-            # Step 3: Create embeddings
+
             logger.info("Step 3: Creating embeddings...")
             embedding_results = self.vector_store.process_all_papers()
             results['steps']['embeddings'] = embedding_results
             logger.info(f"✓ Created embeddings for {embedding_results['success']} papers")
             logger.info(f"  Estimated OpenAI API cost: ${embedding_results['estimated_cost']:.4f}")
-            
+
+            if self.summarizer_enabled and self.summarizer:
+                logger.info("Step 4: Generating structured summaries...")
+                summary_results = self.summarizer.generate_summaries_batch(
+                    limit=self.config.get('max_papers_per_run', 50)
+                )
+                results['steps']['summaries'] = summary_results
+                logger.info(f"✓ Generated summaries for {summary_results['success']} papers")
+                logger.info(f"  Estimated OpenAI API cost: ${summary_results['estimated_cost']:.4f}")
+            else:
+                logger.info("Step 4: Skipping summary generation (disabled or unavailable)")
+                results['steps']['summaries'] = {'skipped': True}
+
             results['status'] = 'SUCCESS'
-            
+
         except Exception as e:
             logger.error(f"Pipeline failed: {e}")
             results['status'] = 'FAILED'
             results['error'] = str(e)
-        
+
         results['end_time'] = datetime.now().isoformat()
-        
-        # Save pipeline results
         self._save_results(results)
-        
-        # Log to database
+
         end_time = datetime.now()
         papers_fetched = results['steps'].get('fetch', {}).get('papers_found', 0)
         papers_processed = results['steps'].get('embeddings', {}).get('success', 0)
@@ -102,11 +112,11 @@ class PipelineOrchestrator:
             start_time, end_time, papers_fetched, papers_processed,
             results['status'], results.get('error')
         )
-        
+
         logger.info("="*60)
         logger.info(f"PIPELINE COMPLETE - Status: {results['status']}")
         logger.info("="*60)
-        
+
         return results
     
     def search_papers(self, query: str, n_results: int = 5) -> Dict:
@@ -133,43 +143,30 @@ class PipelineOrchestrator:
     def get_status(self) -> Dict:
         """Get current pipeline status"""
         stats = self.db.get_stats()
-        
+
         # Get embedding stats
         embedding_stats = self.vector_store.get_embedding_stats()
         stats.update(embedding_stats)
-        
+
+        # Get summary stats (if summarizer available)
+        if self.summarizer_enabled and self.summarizer:
+            summary_stats = self.summarizer.get_summary_stats()
+            stats.update(summary_stats)
+
         # Get last run info
-        self.db.cursor.execute("""
-        SELECT start_time, end_time, status, papers_fetched, papers_processed
-        FROM pipeline_runs
-        ORDER BY id DESC
-        LIMIT 1
-        """)
-        
-        last_run = self.db.cursor.fetchone()
-        
-        if last_run:
-            stats['last_run'] = {
-                'start_time': last_run[0],
-                'end_time': last_run[1],
-                'status': last_run[2],
-                'papers_fetched': last_run[3],
-                'papers_processed': last_run[4]
-            }
-        else:
-            stats['last_run'] = None
+        stats['last_run'] = self.db.get_last_pipeline_run()
         
         return stats
     
     def get_recent_papers(self, limit: int = 20) -> list:
         """Get recently added papers"""
         self.db.cursor.execute("""
-        SELECT arxiv_id, title, abstract, published_date, pdf_downloaded, processed, embedding_created
+        SELECT arxiv_id, title, abstract, published_date, pdf_downloaded, processed, embedding_created, summary_generated
         FROM papers
         ORDER BY fetched_date DESC
         LIMIT ?
         """, (limit,))
-        
+
         papers = []
         for row in self.db.cursor.fetchall():
             papers.append({
@@ -179,7 +176,8 @@ class PipelineOrchestrator:
                 'published_date': row[3],
                 'pdf_downloaded': bool(row[4]),
                 'processed': bool(row[5]),
-                'has_embeddings': bool(row[6])
+                'has_embeddings': bool(row[6]),
+                'has_summary': bool(row[7])
             })
         
         return papers

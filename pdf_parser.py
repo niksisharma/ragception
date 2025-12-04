@@ -1,9 +1,6 @@
-"""
-PDF Parser - Extracts text and sections from papers
-Author: Amaan
-"""
+"""PDF Parser - Extracts text and sections from papers"""
 
-import PyPDF2
+import pypdf
 import re
 import os
 from typing import Dict, List
@@ -68,7 +65,7 @@ class PDFParser:
         text_pages = []
         
         with open(pdf_path, 'rb') as file:
-            pdf_reader = PyPDF2.PdfReader(file)
+            pdf_reader = pypdf.PdfReader(file)
             
             for page_num in range(len(pdf_reader.pages)):
                 try:

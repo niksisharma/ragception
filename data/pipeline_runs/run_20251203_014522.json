@@ -1,0 +1,25 @@
+{
+  "start_time": "2025-12-03T01:44:36.786286",
+  "steps": {
+    "fetch": {
+      "papers_found": 24,
+      "papers_stored": 24,
+      "pdfs_downloaded": 24,
+      "errors": []
+    },
+    "parse": {
+      "total": 24,
+      "success": 24,
+      "failed": []
+    },
+    "embeddings": {
+      "total": 23,
+      "success": 23,
+      "failed": [],
+      "total_api_calls": 115,
+      "estimated_cost": 0.00115
+    }
+  },
+  "status": "SUCCESS",
+  "end_time": "2025-12-03T01:45:22.393513"
+}

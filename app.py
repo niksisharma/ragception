@@ -33,12 +33,13 @@ st.markdown("""
 
     .main {
         padding: 2rem;
-        background-color: #0f1729;
-        color: #e2e8f0;
+        background-color: #f8f9fa;
+        color: #1e293b;
+
     }
 
     h1, h2, h3 {
-        color: #f8fafc;
+        color: #1e293b;
         font-weight: 700;
     }
     h1 { font-size: 2.2rem !important; }
@@ -47,7 +48,7 @@ st.markdown("""
 
     /* Paragraphs and text */
     p, div, span, label {
-        color: #e2e8f0 !important;
+        color: #334155 !important;
         line-height: 1.6;
     }
 
@@ -85,32 +86,32 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     .user-message {
-        background-color: #1e3a8a;
-        color: #e0e7ff !important;
-        border-left: 4px solid #3b82f6;
+        background-color: #e0f2fe;
+        color: #0c4a6e !important;
+        border-left: 4px solid #0284c7;
     }
     .user-message b {
-        color: #93c5fd !important;
+        color: #0369a1 !important;
     }
     .bot-message {
-        background-color: #1e293b;
-        color: #e2e8f0 !important;
+        background-color: #f1f5f9;
+        color: #1e293b !important;
         border-left: 4px solid #64748b;
     }
     .bot-message b {
-        color: #cbd5e1 !important;
+            color: #334155 !important;
     }
 
     /* Text inputs with clear visibility */
     .stTextInput>div>div>input,
     .stTextArea>div>div>textarea,
     .stSelectbox>div>div>select {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
+        background-color: #ffffff !important;
+        border: 2px solid #cbd5e1 !important;
         border-radius: 8px;
         padding: 0.875rem !important;
         font-size: 15px !important;
-        color: #f8fafc !important;
+        color: #1e293b !important;
     }
     .stTextInput>div>div>input:focus,
     .stTextArea>div>div>textarea:focus {
@@ -121,32 +122,32 @@ st.markdown("""
 
     /* Chat input */
     .stChatInput>div>div>input {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
-        color: #f8fafc !important;
+        background-color: #ffffff !important;
+        border: 2px solid #cbd5e1 !important;
+        color: #1e293b !important;
         font-size: 15px !important;
     }
 
     /* Select boxes */
     .stSelectbox>div>div>div {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
+        background-color: #ffffff !important;
+        color: #1e293b !important;
     }
 
     /* Result cards */
     .result-card {
-        background-color: #1e293b;
-        border: 2px solid #334155;
+        background-color: #ffffff;
+        border: 2px solid #e2e8f0;
         border-radius: 12px;
         padding: 1.5rem;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
         transition: all 0.2s ease;
     }
     .result-card:hover {
-        border-color: #3b82f6;
+        border-color: #0284c7;
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        box-shadow: 0 8px 16px rgba(2, 132, 199, 0.15);
     }
 
     /* Sidebar with better contrast */
@@ -166,9 +167,9 @@ st.markdown("""
     /* Sidebar inputs */
     [data-testid="stSidebar"] .stTextInput>div>div>input,
     [data-testid="stSidebar"] .stSelectbox>div>div>select {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-        border: 2px solid #475569 !important;
+        background-color: #1e3a8a !important;
+        color: #ffffff !important;
+        border: 2px solid #3b82f6 !important;
     }
 
     /* Buttons with clear contrast */
@@ -191,40 +192,39 @@ st.markdown("""
 
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
+        background-color: #ffffff !important;
+        color: #1e293b !important;
         font-size: 15px !important;
         font-weight: 500 !important;
-        border: 1px solid #334155 !important;
+        border: 1px solid #e2e8f0 !important;
         border-radius: 8px !important;
     }
 
     /* Metrics */
     [data-testid="stMetricValue"] {
-        color: #f8fafc !important;
+        color: #1e293b !important;
         font-size: 1.5rem !important;
         font-weight: 700 !important;
     }
     [data-testid="stMetricLabel"] {
-        color: #cbd5e1 !important;
+        color: #64748b !important;
         font-size: 14px !important;
         font-weight: 500 !important;
     }
 
-    /* Success/Error/Info messages */
     .stSuccess, .stError, .stWarning, .stInfo {
-        color: #f8fafc !important;
+        color: #1e293b !important;
         border-radius: 8px !important;
     }
 
     /* Links */
     a {
-        color: #60a5fa !important;
+        color: #0284c7 !important;
         text-decoration: none;
         font-weight: 500;
     }
     a:hover {
-        color: #93c5fd !important;
+        color: #0369a1 !important;
         text-decoration: underline;
     }
 
@@ -233,32 +233,32 @@ st.markdown("""
         gap: 8px;
     }
     .stTabs [data-baseweb="tab"] {
-        background-color: #1e293b;
-        color: #cbd5e1;
+        background-color: #f1f5f9;
+        color: #64748b;
         border-radius: 8px 8px 0 0;
         padding: 0.75rem 1.5rem;
         font-weight: 500;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #3b82f6 !important;
+        background-color: #0284c7 !important;
         color: #ffffff !important;
     }
 
     /* Number input */
     .stNumberInput>div>div>input {
-        background-color: #1e293b !important;
-        color: #f8fafc !important;
-        border: 2px solid #475569 !important;
+        background-color: #ffffff !important;
+        color: #1e293b !important;
+        border: 2px solid #cbd5e1 !important;
     }
 
     /* Checkbox */
     .stCheckbox {
-        color: #e2e8f0 !important;
+        color: #334155 !important;
     }
 
     /* Spinner */
     .stSpinner>div {
-        border-top-color: #3b82f6 !important;
+        border-top-color: #0284c7 !important;
     }
 
     #MainMenu {visibility: hidden;}
@@ -624,9 +624,9 @@ elif page == "📊 Dashboard":
         }
         fig = px.funnel(pipeline_data, y='Stage', x='Count', title="Pipeline Funnel")
         fig.update_layout(
-            paper_bgcolor='#1e293b',
-            plot_bgcolor='#1e293b',
-            font=dict(color='#e2e8f0')
+            paper_bgcolor='#ffffff',
+            plot_bgcolor='#ffffff',
+            font=dict(color='#1e293b')
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -637,9 +637,9 @@ elif page == "📊 Dashboard":
         }
         fig = px.bar(user_data, x='Metric', y='Count', title="User Activity")
         fig.update_layout(
-            paper_bgcolor='#1e293b',
-            plot_bgcolor='#1e293b',
-            font=dict(color='#e2e8f0')
+            paper_bgcolor='#ffffff',
+            plot_bgcolor='#ffffff',
+            font=dict(color='#1e293b')
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -961,7 +961,7 @@ elif page == "📚 My Papers":
 # Footer
 st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown("""
-    <div style='text-align: center; padding: 1rem; border-top: 1px solid #334155;'>
+        <div style='text-align: center; padding: 1rem; border-top: 1px solid #e2e8f0;'>
         <p style='color: #94a3b8;'>RAG Research Bot v2.0 • Agent + Memory + Reranking</p>
     </div>
 """, unsafe_allow_html=True)

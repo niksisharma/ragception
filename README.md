@@ -8,7 +8,7 @@ generating structured summaries, enabling semantic search through an intuitive w
 The tool primarily targets researchers, graduate students, and practitioners who need a reliable
 way to keep up with emerging RAG literature.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatbot-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ragception.streamlit.app/)
 
 ### How to run it on your own machine
 
